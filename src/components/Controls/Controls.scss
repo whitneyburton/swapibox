@@ -1,3 +1,28 @@
 .Controls {
-  background-color: aqua;
+  background-color: #B5B5B5;
+  height: 100%;
+  grid-area: controls;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btns {
+  border-radius: 5px;
+  padding: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.people-btn,
+.planets-btn,
+.vehicles-btn {
+  background-color: #12ca8752;
+}
+
+.favorites-btn {
+  background-color: #ffe9a9;
+  font-size: 14px;
 }

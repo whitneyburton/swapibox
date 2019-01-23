@@ -1,3 +1,10 @@
-h1 {
-  color: $header-color;
+.App {
+  font-family: Arial, Geneva, Tahoma, sans-serif;
+  display: grid;
+  grid-template-columns: 26% 37% 37%;
+  grid-template-rows: 1fr 1fr 8fr;
+  grid-template-areas: 
+    "header header header"
+    "controls controls controls"
+    "filmscript cardcontainer cardcontainer";
 }

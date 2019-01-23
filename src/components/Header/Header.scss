@@ -1,3 +1,18 @@
 .Header {
-  background-color: orange;
+  display: flex;
+  background-color: #3a4a5a;
+  justify-content: space-between;
+  height: 10vh;
+  grid-area: header;
+  color: #fff;
+}
+
+.header-title {
+  padding: 0px 30px;
+  letter-spacing: 3px;
+}
+
+.category-label {
+  margin: auto;
+  letter-spacing: 1px;
 }
