@@ -10,6 +10,9 @@ class App extends Component {
     return (
       <div className="App">
         <h1>App</h1>
+        <Header />
+        <Controls />
+        <FilmScript />
         <CardContainer />
       </div>
     );

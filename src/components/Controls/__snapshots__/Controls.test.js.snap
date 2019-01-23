@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Controls should match the snapshot 1`] = `
+<div
+  className="Controls"
+>
+  <h3>
+    Controls
+  </h3>
+</div>
+`;
