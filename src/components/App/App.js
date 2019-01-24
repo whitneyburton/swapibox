@@ -13,13 +13,14 @@ class App extends Component {
       people: [],
       vehicles: [],
       filmscript: '',
-      category: 'people'
+      category: 'people',
     }
   };
 
   componentDidMount = () => {
     this.fetchFilmScript();
     this.fetchPeople();
+    this.fetchPlanets();
   }
 
   fetchFilmScript = async () => {
@@ -29,7 +30,6 @@ class App extends Component {
       const data = await response.json();
       const randomNumber =  Math.floor(Math.random() * Math.floor(7)); 
       let featureFilmScript = data.results[randomNumber];
-      console.log(featureFilmScript)
       this.setState({
         filmscript: { 
           title: featureFilmScript.title,
@@ -42,9 +42,60 @@ class App extends Component {
     }
   }
 
+  fetchPlanets = async () => {
+    let planets = [];
+    for (let i = 1; i < 3; i++) {
+      try {
+        const planetsURL = `https://swapi.co/api/planets/?page=${i}`;
+        const response = await fetch(planetsURL);
+        const data = await response.json();
+        planets.push(...data.results);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    const planetsWithResidents = await this.fetchResidents(planets);
+    this.setState({ planets: planetsWithResidents })
+  }
+
+  fetchResidents = (planets) => {
+    const unresolvedPromises = planets.map(async planet => {
+      if (planet.residents.length > 0) {
+        let residents = [];
+        let allResidents = await this.fetchEachResident(planet.residents);
+        residents.push(...allResidents);
+        return ({
+          planet: planet.name, 
+          terrain: planet.terrain,
+          population: planet.population,
+          climate: planet.climate, 
+          residents
+        })
+      } else {
+        return ({
+          planet: planet.name, 
+          terrain: planet.terrain,
+          population: planet.population,
+          climate: planet.climate, 
+          residents: 'No Residents'
+        })
+      }
+    })
+    return Promise.all(unresolvedPromises);
+  }
+
+  fetchEachResident = (URLS) => {
+    const unresolvedPromises = URLS.map(async url => {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data.name;
+    })
+    return Promise.all(unresolvedPromises)
+  }
+
   fetchPeople = async () => {
     let people = [];
-    for (let i = 1; i < 10; i++) {
+    for (let i = 1; i < 3; i++) {
       try {
         const peopleURL = `https://swapi.co/api/people/?page=${i}`;
         const response = await fetch(peopleURL);
@@ -98,8 +149,11 @@ class App extends Component {
   }
 
   returnCards = () => {
-    if (this.state.category === 'people') {
-      return this.state.people;
+    let { category, people, planets } = this.state;
+    if (category === 'people') {
+      return people;
+    } else if (category === 'planets') {
+      return planets;
     } else {
       return [];
     }
