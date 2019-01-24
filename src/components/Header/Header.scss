@@ -1,15 +1,23 @@
 .Header {
   display: flex;
-  background-color: #3a4a5a;
+  align-items: center;
+  flex-direction: column;
+  background-color: #000;
   justify-content: space-between;
-  height: 10vh;
+  height: 12vh;
   grid-area: header;
   color: #fff;
 }
 
 .header-title {
+  font-family: 'Bungee Inline';
   padding: 0px 30px;
-  letter-spacing: 3px;
+  letter-spacing: 9px;
+  font-size: 2em;
+}
+
+h1 {
+  margin: 0;
 }
 
 .category-label {

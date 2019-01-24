@@ -1,7 +1,15 @@
 .FilmScript {
-  background-color: #3a4a5a;
+  font-family: 'Pathway Gothic One', sans-serif;
+  background-color: #0000009c;
   grid-area: filmscript;
-  padding: 30px;
-  color: #fff;
+  padding: 17px;
+  color: #ffff00;
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+
 }
 
+.filmscript-opening {
+  // width: 60%; 
+}

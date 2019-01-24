@@ -1,15 +1,17 @@
 .Controls {
-  background-color: #B5B5B5;
+  background-color: transparent;
   height: 100%;
   grid-area: controls;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding-top: 10px;
+
 }
 
 .btns {
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px 10px;
 
   &:hover {
     cursor: pointer;
@@ -19,10 +21,13 @@
 .people-btn,
 .planets-btn,
 .vehicles-btn {
-  background-color: #12ca8752;
+  background-color: #0013ff69;
+  border: none;
+  color: #fff;
 }
 
 .favorites-btn {
-  background-color: #ffe9a9;
+  background-color: #ffd811c4;
   font-size: 14px;
+  color: #fff;
 }

@@ -4,7 +4,7 @@ import './FilmScript.scss';
 export const FilmScript = ({ filmscript }) => {
   return (
     <div className='FilmScript'>
-      <p>
+      <p className='filmscript-opening'>
         {filmscript.opening_crawl}
         <h4>
           {filmscript.title}
