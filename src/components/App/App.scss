@@ -1,6 +1,12 @@
+body {
+  background-image: url('./images/black-space.jpg');
+  background-repeat: repeat;
+  background-size: cover;
+  background-color: #000;
+}
+
 .App {
   font-family: Arial, Geneva, Tahoma, sans-serif;
-  // background-image: url("./space-background.jpg");
   // display: grid;
   grid-template-columns: 26% 37% 37%;
   grid-template-rows: 1fr 1fr 8fr;
