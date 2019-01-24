@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../main.scss';
+import { fetchFilmScript, fetchPeople, fetchPlanets } from '../../helpers/apiCalls';
 import { Header } from '../Header/Header'
 import { FilmScript } from '../FilmScript/FilmScript'
 import { Controls } from '../Controls/Controls'
@@ -18,16 +19,14 @@ class App extends Component {
   };
 
   componentDidMount = () => {
-    this.fetchFilmScript();
-    this.fetchPeople();
-    this.fetchPlanets();
+    this.generateFilmScript();
+    // generatePeople();
+    // generatePlanets();
   }
 
-  fetchFilmScript = async () => {
+  generateFilmScript = async () => {
     try {
-      const filmsURL = 'https://swapi.co/api/films/';
-      const response = await fetch(filmsURL);
-      const data = await response.json();
+      const data = await fetchFilmScript();
       const randomNumber =  Math.floor(Math.random() * Math.floor(7)); 
       let featureFilmScript = data.results[randomNumber];
       this.setState({
@@ -42,13 +41,11 @@ class App extends Component {
     }
   }
 
-  fetchPlanets = async () => {
+  generatePlanets = async () => {
     let planets = [];
     for (let i = 1; i < 3; i++) {
       try {
-        const planetsURL = `https://swapi.co/api/planets/?page=${i}`;
-        const response = await fetch(planetsURL);
-        const data = await response.json();
+        const data = fetchPlanets();
         planets.push(...data.results);
       } catch (error) {
         console.log(error);
@@ -93,7 +90,7 @@ class App extends Component {
     return Promise.all(unresolvedPromises)
   }
 
-  fetchPeople = async () => {
+  generatePeople = async () => {
     let people = [];
     for (let i = 1; i < 3; i++) {
       try {
