@@ -1,19 +1,17 @@
 import React from 'react';
 import './FilmScript.scss';
 
-export const FilmScript = () => {
+export const FilmScript = ({ filmscript }) => {
   return (
     <div className='FilmScript'>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        {filmscript.opening_crawl}
         <h4>
-          A New Hope
+          {filmscript.title}
             <h5>
-            1997-05-23
+              {filmscript.release_date}
             </h5>
         </h4>
-      
-
       </p>
     </div>
   )

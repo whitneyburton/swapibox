@@ -12,12 +12,34 @@ class App extends Component {
       planets: [],
       people: [],
       vehicles: [],
+      filmscript: '',
       category: 'people'
     }
   };
 
   componentDidMount = () => {
+    this.fetchFilmScript();
     this.fetchPeople();
+  }
+
+  fetchFilmScript = async () => {
+    try {
+      const filmsURL = 'https://swapi.co/api/films/';
+      const response = await fetch(filmsURL);
+      const data = await response.json();
+      const randomNumber =  Math.floor(Math.random() * Math.floor(7)); 
+      let featureFilmScript = data.results[randomNumber];
+      console.log(featureFilmScript)
+      this.setState({
+        filmscript: { 
+          title: featureFilmScript.title,
+          opening_crawl: featureFilmScript.opening_crawl,
+          release_date: featureFilmScript.release_date
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   fetchPeople = async () => {
@@ -26,16 +48,14 @@ class App extends Component {
       try {
         const peopleURL = `https://swapi.co/api/people/?page=${i}`;
         const response = await fetch(peopleURL);
-        const result = await response.json();
-        people.push(...result.results);
+        const data = await response.json();
+        people.push(...data.results);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       } 
     }
     const peopleWithHomeworlds = await this.fetchHomeworld(people);
-    console.log(peopleWithHomeworlds)
     const peopleWithSpecies = await this.fetchSpecies(peopleWithHomeworlds);
-    console.log(peopleWithSpecies)
     this.setState({ people: peopleWithSpecies })
   }
 
@@ -43,7 +63,6 @@ class App extends Component {
     const unresolvedPromises = people.map(async person => {
       const response = await fetch(person.homeworld);
       const data = await response.json();
-      console.log(data.species)
       return ({
         ...person,
         homeworld: data.name,
@@ -59,17 +78,19 @@ class App extends Component {
         const response = await fetch(person.species[0]);
         const data = await response.json();
         return ({
-          person: person.name,
+          name: person.name,
           homeworld: person.homeworld,
           population: person.population,
-          species: data.name
+          species: data.name,
+          language: data.language
         })
       } else {
         return ({
-          person: person.name,
+          name: person.name,
           homeworld: person.homeworld,
           population: person.population,
-          species: 'unknown'
+          species: 'unknown',
+          language: 'unknown'
         })
       }
     })
@@ -89,7 +110,9 @@ class App extends Component {
       <div className="App">
         <Header />
         <Controls />
-        <FilmScript />
+        <FilmScript
+          filmscript={this.state.filmscript}
+        />
         <CardContainer
           people={this.returnCards()}
         />
