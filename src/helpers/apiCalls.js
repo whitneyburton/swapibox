@@ -47,13 +47,17 @@ export const fetchPeople = async () => {
 };
 
 export const fetchVehicles = async () => {
-  const vehiclesURL = 'https://swapi.co/api/vehicles/';
-  const response = await fetch(vehiclesURL);
-  if (response.ok) {
-    const allVehicles = await response.json();
-    const vehicles = await distillVehicleProperties(allVehicles.results);
-    return vehicles;
-  } else {
-    throw new Error('Error fetching vehicles data');
+  let vehicles = [];
+  for (let i = 1; i < 3; i++) {
+    const vehiclesURL = `https://swapi.co/api/vehicles/?page=${i}`;
+    const response = await fetch(vehiclesURL);
+    if (response.ok) {
+      const data = await response.json();
+      const allVehicles = await distillVehicleProperties(data.results);
+      vehicles.push(...allVehicles)
+    } else {
+      throw new Error('Error fetching vehicles data');
+    }
   }
+  return vehicles;
 }
