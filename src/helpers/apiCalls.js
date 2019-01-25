@@ -1,13 +1,15 @@
+import { fetchResidents, fetchHomeworld, fetchSpecies, distillVehicleProperties } from './helpers';
+
 export const fetchFilmScript = async () => {
   const filmsURL = 'https://swapi.co/api/films/';
   const response = await fetch(filmsURL);
   if (response.ok) {
-    const data = await response.json();
-    return data;
+    const films = await response.json();
+    return films;
   } else {
     throw new Error('Error fetching films data.');
   }
-}
+};
 
 export const fetchPlanets = async () => {
   let planets = [];
@@ -22,23 +24,36 @@ export const fetchPlanets = async () => {
     }
   }
   if (planets.length > 0) {
-    return planets;
+    const planetsWithResidents = await fetchResidents(planets);
+    return planetsWithResidents;
   }
-}
+};
 
 export const fetchPeople = async () => {
   let people = [];
   for (let i = 1; i < 3; i++) {
-    try {
-      const peopleURL = `https://swapi.co/api/people/?page=${i}`;
-      const response = await fetch(peopleURL);
+    const peopleURL = `https://swapi.co/api/people/?page=${i}`;
+    const response = await fetch(peopleURL);
+    if (response.ok) {
       const data = await response.json();
       people.push(...data.results);
-    } catch (error) {
-      console.log(error);
-    } 
+    } else {
+      throw new Error('Error fetching people data');
+    }
   }
-  const peopleWithHomeworlds = await this.fetchHomeworld(people);
-  const peopleWithSpecies = await this.fetchSpecies(peopleWithHomeworlds);
-  this.setState({ people: peopleWithSpecies })
+  const peopleWithHomeworlds = await fetchHomeworld(people);
+  const peopleWithSpecies = await fetchSpecies(peopleWithHomeworlds);
+  return peopleWithSpecies;
+};
+
+export const fetchVehicles = async () => {
+  const vehiclesURL = 'https://swapi.co/api/vehicles/';
+  const response = await fetch(vehiclesURL);
+  if (response.ok) {
+    const allVehicles = await response.json();
+    const vehicles = await distillVehicleProperties(allVehicles.results);
+    return vehicles;
+  } else {
+    throw new Error('Error fetching vehicles data');
+  }
 }

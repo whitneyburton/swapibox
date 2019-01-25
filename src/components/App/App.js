@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../main.scss';
-import { fetchFilmScript, fetchPeople, fetchPlanets } from '../../helpers/apiCalls';
+import { fetchFilmScript, fetchPeople, fetchPlanets, fetchVehicles } from '../../helpers/apiCalls';
 import { Header } from '../Header/Header'
 import { FilmScript } from '../FilmScript/FilmScript'
 import { Controls } from '../Controls/Controls'
@@ -20,8 +20,18 @@ class App extends Component {
 
   componentDidMount = () => {
     this.generateFilmScript();
-    // generatePeople();
-    // generatePlanets();
+    this.generatePeople();
+    this.generatePlanets();
+    this.generateVehicles();
+  }
+
+  generateVehicles = async () => {
+    try {
+      const vehicles = await fetchVehicles();
+      this.setState({ vehicles })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   generateFilmScript = async () => {
@@ -42,107 +52,21 @@ class App extends Component {
   }
 
   generatePlanets = async () => {
-    let planets = [];
-    for (let i = 1; i < 3; i++) {
-      try {
-        const data = fetchPlanets();
-        planets.push(...data.results);
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      const planets = await fetchPlanets();
+      this.setState({ planets })
+    } catch (error) {
+      console.log(error);
     }
-    const planetsWithResidents = await this.fetchResidents(planets);
-    this.setState({ planets: planetsWithResidents })
-  }
-
-  fetchResidents = (planets) => {
-    const unresolvedPromises = planets.map(async planet => {
-      if (planet.residents.length > 0) {
-        let residents = [];
-        let allResidents = await this.fetchEachResident(planet.residents);
-        residents.push(...allResidents);
-        return ({
-          planet: planet.name, 
-          terrain: planet.terrain,
-          population: planet.population,
-          climate: planet.climate, 
-          residents
-        })
-      } else {
-        return ({
-          planet: planet.name, 
-          terrain: planet.terrain,
-          population: planet.population,
-          climate: planet.climate, 
-          residents: 'No Residents'
-        })
-      }
-    })
-    return Promise.all(unresolvedPromises);
-  }
-
-  fetchEachResident = (URLS) => {
-    const unresolvedPromises = URLS.map(async url => {
-      const response = await fetch(url);
-      const data = await response.json();
-      return data.name;
-    })
-    return Promise.all(unresolvedPromises)
   }
 
   generatePeople = async () => {
-    let people = [];
-    for (let i = 1; i < 3; i++) {
-      try {
-        const peopleURL = `https://swapi.co/api/people/?page=${i}`;
-        const response = await fetch(peopleURL);
-        const data = await response.json();
-        people.push(...data.results);
-      } catch (error) {
-        console.log(error);
-      } 
-    }
-    const peopleWithHomeworlds = await this.fetchHomeworld(people);
-    const peopleWithSpecies = await this.fetchSpecies(peopleWithHomeworlds);
-    this.setState({ people: peopleWithSpecies })
-  }
-
-  fetchHomeworld = (people) => {
-    const unresolvedPromises = people.map(async person => {
-      const response = await fetch(person.homeworld);
-      const data = await response.json();
-      return ({
-        ...person,
-        homeworld: data.name,
-        population: data.population,
-      })
-    })
-    return Promise.all(unresolvedPromises);
-  }
-  
-  fetchSpecies = (people) => {
-    const unresolvedPromises = people.map(async person => {
-      if (person.species.length > 0) {
-        const response = await fetch(person.species[0]);
-        const data = await response.json();
-        return ({
-          name: person.name,
-          homeworld: person.homeworld,
-          population: person.population,
-          species: data.name,
-          language: data.language
-        })
-      } else {
-        return ({
-          name: person.name,
-          homeworld: person.homeworld,
-          population: person.population,
-          species: 'unknown',
-          language: 'unknown'
-        })
-      }
-    })
-    return Promise.all(unresolvedPromises);
+    try {
+      const people = await fetchPeople();
+      this.setState({ people })
+    } catch (error) {
+      console.log(error);
+    } 
   }
 
   returnCards = () => {
