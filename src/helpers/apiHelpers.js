@@ -5,6 +5,7 @@ export const fetchResidents = (planets) => {
       let allResidents = await fetchEachResident(planet.residents);
       residents.push(...allResidents);
       return ({
+        type: 'planet',
         planet: planet.name, 
         terrain: planet.terrain,
         population: planet.population,
@@ -13,6 +14,7 @@ export const fetchResidents = (planets) => {
       })
     } else {
       return ({
+        type: 'planet',
         planet: planet.name, 
         terrain: planet.terrain,
         population: planet.population,
@@ -52,6 +54,7 @@ export const fetchSpecies = (people) => {
       const response = await fetch(person.species[0]);
       const data = await response.json();
       return ({
+        type: 'person',
         name: person.name,
         homeworld: person.homeworld,
         population: person.population,
@@ -60,6 +63,7 @@ export const fetchSpecies = (people) => {
       })
     } else {
       return ({
+        type: 'person',
         name: person.name,
         homeworld: person.homeworld,
         population: person.population,
@@ -74,6 +78,7 @@ export const fetchSpecies = (people) => {
 export const distillVehicleProperties = (vehicles) => {
   const distilledVehicles = vehicles.map(vehicle => {
     return {
+      type: 'vehicle',
       name: vehicle.name,
       model: vehicle.model,
       class: vehicle.vehicle_class,

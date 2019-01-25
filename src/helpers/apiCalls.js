@@ -1,4 +1,4 @@
-import { fetchResidents, fetchHomeworld, fetchSpecies, distillVehicleProperties } from './helpers';
+import { fetchResidents, fetchHomeworld, fetchSpecies, distillVehicleProperties } from './apiHelpers';
 
 export const fetchFilmScript = async () => {
   const filmsURL = 'https://swapi.co/api/films/';
