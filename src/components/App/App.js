@@ -14,15 +14,12 @@ class App extends Component {
       people: [],
       vehicles: [],
       filmscript: '',
-      category: 'people',
+      category: '',
     }
   };
 
   componentDidMount = () => {
     this.generateFilmScript();
-    this.generatePeople();
-    this.generatePlanets();
-    this.generateVehicles();
   }
 
   generateVehicles = async () => {
@@ -37,10 +34,10 @@ class App extends Component {
   generateFilmScript = async () => {
     try {
       const data = await fetchFilmScript();
-      const randomNumber =  Math.floor(Math.random() * Math.floor(7)); 
+      const randomNumber = Math.floor(Math.random() * Math.floor(7));
       let featureFilmScript = data.results[randomNumber];
       this.setState({
-        filmscript: { 
+        filmscript: {
           title: featureFilmScript.title,
           opening_crawl: featureFilmScript.opening_crawl,
           release_date: featureFilmScript.release_date
@@ -66,7 +63,7 @@ class App extends Component {
       this.setState({ people })
     } catch (error) {
       console.log(error);
-    } 
+    }
   }
 
   returnCards = () => {
@@ -80,16 +77,35 @@ class App extends Component {
     }
   }
 
+  retrieveCategory = (category) => {
+    this.setState({ category })
+    if (category === 'people' && this.state.people.length === 0) {
+      this.generatePeople();
+    } else if (category === 'planets' && this.state.planets.length === 0) {
+      this.generatePlanets();
+    } else if (category === 'vehicles' && this.state.vehicles.length === 0) {
+      this.generateVehicles();
+    } else if (category === 'favorites') {
+      return [];
+    } 
+  }
+
   render() {
+    let { category, people, planets, vehicles, filmscript } = this.state;
     return (
       <div className="App">
         <Header />
-        <Controls />
+        <Controls
+          retrieveCategory={this.retrieveCategory}
+        />
         <FilmScript
-          filmscript={this.state.filmscript}
+          filmscript={filmscript}
         />
         <CardContainer
-          people={this.returnCards()}
+          category={category}
+          people={people}
+          planets={planets}
+          vehicles={vehicles}
         />
       </div>
     );
