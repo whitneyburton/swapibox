@@ -1,49 +1,37 @@
 import { fetchResidents, fetchHomeworld, fetchSpecies, distillVehicleProperties } from './apiHelpers';
 
-export const fetchFilmScript = async () => {
-  const filmsURL = 'https://swapi.co/api/films/';
-  const response = await fetch(filmsURL);
+export const fetchData = async (url) => {
+  const response = await fetch(url);
   if (response.ok) {
-    const films = await response.json();
-    return films;
+    const data = await response.json();
+    return data;
   } else {
-    throw new Error('Error fetching films data.');
+    throw new Error('Error fetching data.')
   }
+}
+
+export const fetchFilmScript = async () => {
+  return await fetchData('https://swapi.co/api/films/')
 };
 
 export const fetchPlanets = async () => {
-  const planetsURL = 'https://swapi.co/api/planets/';
-  const response = await fetch(planetsURL);
-  if (response.ok) {
-    const data = await response.json();
-    const planetsWithResidents = await fetchResidents(data.results);
-    return planetsWithResidents;
-  } else {
-    throw new Error('Error fetching planets data');
+  const data = await fetchData('https://swapi.co/api/planets/');
+  if (data) {
+    return await fetchResidents(data.results);
   }
 };
 
 export const fetchPeople = async () => {
-  const peopleURL = 'https://swapi.co/api/people/';
-  const response = await fetch(peopleURL);
-  if (response.ok) {
-    const data = await response.json();
+  const data = await fetchData('https://swapi.co/api/people/');
+  if (data) {
     const peopleWithHomeworlds = await fetchHomeworld(data.results);
-    const peopleWithSpecies = await fetchSpecies(peopleWithHomeworlds);
-    return peopleWithSpecies;
-  } else {
-    throw new Error('Error fetching people data');
+    return await fetchSpecies(peopleWithHomeworlds);
   }
 };
 
 export const fetchVehicles = async () => {
-    const vehiclesURL = `https://swapi.co/api/vehicles/?page=1`;
-    const response = await fetch(vehiclesURL);
-    if (response.ok) {
-      const data = await response.json();
-      const allVehicles = await distillVehicleProperties(data.results);
-      return allVehicles;
-    } else {
-      throw new Error('Error fetching vehicles data');
-    }
+  const data = await fetchData(`https://swapi.co/api/vehicles/?page=1`);
+  if (data) {
+    return await distillVehicleProperties(data.results);
+  }
 }
