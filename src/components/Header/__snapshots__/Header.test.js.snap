@@ -4,8 +4,12 @@ exports[`Header should match the snapshot 1`] = `
 <div
   className="Header"
 >
-  <h3>
-    Header
-  </h3>
+  <div
+    className="header-title"
+  >
+    <h1>
+      SWAPI-Box
+    </h1>
+  </div>
 </div>
 `;

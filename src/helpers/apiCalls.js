@@ -23,10 +23,8 @@ export const fetchPlanets = async () => {
       throw new Error('Error fetching planets data');
     }
   }
-  if (planets.length > 0) {
-    const planetsWithResidents = await fetchResidents(planets);
-    return planetsWithResidents;
-  }
+  const planetsWithResidents = await fetchResidents(planets);
+  return planetsWithResidents;
 };
 
 export const fetchPeople = async () => {

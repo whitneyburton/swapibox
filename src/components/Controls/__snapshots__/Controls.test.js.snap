@@ -4,8 +4,37 @@ exports[`Controls should match the snapshot 1`] = `
 <div
   className="Controls"
 >
-  <h3>
-    Controls
-  </h3>
+  <button
+    className="people-btn btns"
+    name="people"
+    onClick={[Function]}
+    type="submit"
+  >
+    PEOPLE
+  </button>
+  <button
+    className="planets-btn btns"
+    name="planets"
+    onClick={[Function]}
+    type="submit"
+  >
+    PLANETS
+  </button>
+  <button
+    className="vehicles-btn btns"
+    name="vehicles"
+    onClick={[Function]}
+    type="submit"
+  >
+    VEHICLES
+  </button>
+  <button
+    className="favorites-btn btns"
+    name="favorites"
+    onClick={[Function]}
+    type="submit"
+  >
+    FAVORITES (0)
+  </button>
 </div>
 `;

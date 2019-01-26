@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import './Controls.scss';
 
 export class Controls extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false,
+    }
+  }
   
   passCategory = (e) => {
     let { retrieveCategory } = this.props;
@@ -10,6 +16,15 @@ export class Controls extends Component {
   }
 
   render() {
+    const favorites = this.props.favorites.length;
+    const categories = ['PEOPLE', 'PLANETS', 'VEHICLES', `FAVORITES ${favorites}`]
+    const buttons = categories.map(category => {
+      return <button
+        onClick={this.passCategory}
+        type='submit'
+        name='people'
+        className='people-btn btns'>${category}</button>
+    })
     return (
       <div className='Controls'>
         <button

@@ -6,7 +6,7 @@ export const fetchResidents = (planets) => {
       residents.push(...allResidents);
       return ({
         type: 'planet',
-        planet: planet.name, 
+        name: planet.name, 
         terrain: planet.terrain,
         population: planet.population,
         climate: planet.climate, 
@@ -15,7 +15,7 @@ export const fetchResidents = (planets) => {
     } else {
       return ({
         type: 'planet',
-        planet: planet.name, 
+        name: planet.name, 
         terrain: planet.terrain,
         population: planet.population,
         climate: planet.climate, 
