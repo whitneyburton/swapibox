@@ -2,7 +2,7 @@ import React from 'react';
 import './Card.scss';
 
 export const Card = ({ card }) => {
-  console.log(card.type)
+  console.log(card.residents)
   let cardType;
   switch (card.type) {
     case 'person':
@@ -20,7 +20,7 @@ export const Card = ({ card }) => {
         <p>Terrain: {card.terrain}</p>
         <p>Population: {card.population}</p>
         <p>Climate: {card.climate}</p>
-        <p>residents: {card.residents}</p>
+        <p>Residents: {card.residents}</p>
       </div>
       break;
     case 'vehicle':

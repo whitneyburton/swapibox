@@ -1,12 +1,10 @@
 .Header {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
   background-color: #000;
-  justify-content: space-between;
   height: 12vh;
-  grid-area: header;
-  color: #fff;
+  color: yellow;
 }
 
 .header-title {
