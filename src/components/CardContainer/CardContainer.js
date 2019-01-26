@@ -2,18 +2,14 @@ import React from 'react';
 import './CardContainer.scss';
 import { Card } from '../Card/Card';
 
-export const CardContainer = ({ category, people, planets, vehicles }) => {
-  
-  const allPeople = people.map(person => {
-    return <Card
-      key={person.name}
-      person={person}
-    />;
+export const CardContainer = ({ cards }) => {
+  const allCards = cards.map(card => {
+    return <Card key={card.name} card={card} />;
   });
 
   return (
     <div className='CardContainer'>
-      { allPeople }
+      { allCards }
     </div>
   )
 }
