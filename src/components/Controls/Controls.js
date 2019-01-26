@@ -17,36 +17,18 @@ export class Controls extends Component {
 
   render() {
     const favorites = this.props.favorites.length;
-    const categories = ['PEOPLE', 'PLANETS', 'VEHICLES', `FAVORITES ${favorites}`]
+    const categories = ['people', 'planets', 'vehicles', `favorites (${favorites})`]
     const buttons = categories.map(category => {
       return <button
         onClick={this.passCategory}
         type='submit'
-        name='people'
-        className='people-btn btns'>${category}</button>
+        name={`${category}`}
+        className={`${category}`}>{category.toUpperCase()}</button>
     })
+
     return (
       <div className='Controls'>
-        <button
-          onClick={this.passCategory}
-          type='submit'
-          name='people'
-          className='people-btn btns'>PEOPLE</button>
-        <button
-          onClick={this.passCategory}        
-          type='submit'
-          name='planets'
-          className='planets-btn btns'>PLANETS</button>
-        <button
-          onClick={this.passCategory}        
-          type='submit'
-          name='vehicles'
-          className='vehicles-btn btns'>VEHICLES</button>
-        <button
-          onClick={this.passCategory}        
-          type='submit'
-          name='favorites'
-          className='favorites-btn btns'>FAVORITES (0)</button>
+        { buttons }
       </div>
     )
   }

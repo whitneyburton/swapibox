@@ -9,26 +9,38 @@
 
 }
 
-.btns {
+// .btns {
+//   border-radius: 5px;
+//   padding: 5px 10px;
+
+//   &:hover {
+//     cursor: pointer;
+//   }
+// }
+
+.people,
+.planets,
+.vehicles {
   border-radius: 5px;
   padding: 5px 10px;
+  background-color: #0013ff69;
+  border: none;
+  color: #fff;
 
   &:hover {
     cursor: pointer;
   }
 }
 
-.people-btn,
-.planets-btn,
-.vehicles-btn {
-  background-color: #0013ff69;
-  border: none;
-  color: #fff;
-}
-
-.favorites-btn {
+.favorites {
+  border-radius: 5px;
+  padding: 5px 10px;
   background-color: #ffd811c4;
   font-size: 14px;
   border: none;
   color: #fff;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
