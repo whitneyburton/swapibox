@@ -10,10 +10,6 @@ export const fetchData = async (url) => {
   }
 }
 
-export const fetchFilmScript = async () => {
-  return await fetchData('https://swapi.co/api/films/')
-};
-
 export const fetchPlanets = async () => {
   const data = await fetchData('https://swapi.co/api/planets/');
   if (data) {

@@ -23,18 +23,9 @@ class App extends Component {
     this.generateFilmScript();
   }
 
-  generateVehicles = async () => {
-    try {
-      const vehicles = await api.fetchVehicles();
-      this.setState({ vehicles })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   generateFilmScript = async () => {
     try {
-      const data = await api.fetchFilmScript();
+      const data = await api.fetchData('https://swapi.co/api/films/');
       const randomNumber = Math.floor(Math.random() * Math.floor(7));
       let featureFilmScript = data.results[randomNumber];
       this.setState({
@@ -48,6 +39,16 @@ class App extends Component {
       console.log(error);
     }
   }
+
+  generateVehicles = async () => {
+    try {
+      const vehicles = await api.fetchVehicles();
+      this.setState({ vehicles })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   generatePlanets = async () => {
     try {
