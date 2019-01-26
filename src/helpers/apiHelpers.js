@@ -1,16 +1,38 @@
+import { fetchData } from './apiCalls';
+
+export const fetchPlanets = async () => {
+  const data = await fetchData('https://swapi.co/api/planets/');
+  if (data) {
+    return await fetchResidents(data.results);
+  }
+};
+
+export const fetchPeople = async () => {
+  const data = await fetchData('https://swapi.co/api/people/');
+  if (data) {
+    const peopleWithHomeworlds = await fetchHomeworld(data.results);
+    return await fetchSpecies(peopleWithHomeworlds);
+  }
+};
+
+export const fetchVehicles = async () => {
+  const data = await fetchData(`https://swapi.co/api/vehicles/`);
+  if (data) {
+    return await distillVehicleProperties(data.results);
+  }
+};
+
 export const fetchResidents = (planets) => {
   const unresolvedPromises = planets.map(async planet => {
     if (planet.residents.length > 0) {
-      let residents = [];
-      let allResidents = await fetchEachResident(planet.residents);
-      residents.push(...allResidents);
+      let residents = await fetchEachResident(planet.residents);
       return ({
         type: 'planet',
         name: planet.name, 
         terrain: planet.terrain,
         population: planet.population,
         climate: planet.climate, 
-        residents
+        residents: residents
       })
     } else {
       return ({
@@ -28,21 +50,19 @@ export const fetchResidents = (planets) => {
 
 export const fetchEachResident = (URLS) => {
   const unresolvedPromises = URLS.map(async url => {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data.name;
+    const response = await fetchData(url);
+    return response.name;
   })
   return Promise.all(unresolvedPromises)
 }
 
 export const fetchHomeworld = (people) => {
   const unresolvedPromises = people.map(async person => {
-    const response = await fetch(person.homeworld);
-    const data = await response.json();
+    const response = await fetchData(person.homeworld);
     return ({
       ...person,
-      homeworld: data.name,
-      population: data.population,
+      homeworld: response.name,
+      population: response.population,
     })
   })
   return Promise.all(unresolvedPromises);
@@ -51,15 +71,14 @@ export const fetchHomeworld = (people) => {
 export const fetchSpecies = (people) => {
   const unresolvedPromises = people.map(async person => {
     if (person.species.length > 0) {
-      const response = await fetch(person.species[0]);
-      const data = await response.json();
+      const response = await fetchData(person.species[0]);
       return ({
         type: 'person',
         name: person.name,
         homeworld: person.homeworld,
         population: person.population,
-        species: data.name,
-        language: data.language
+        species: response.name,
+        language: response.language
       })
     } else {
       return ({

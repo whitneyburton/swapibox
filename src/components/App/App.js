@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../main.scss';
-import * as api from '../../helpers/apiCalls';
+import { fetchData } from '../../helpers/apiCalls';
+import * as api from '../../helpers/apiHelpers';
 import { Header } from '../Header/Header'
 import { FilmScript } from '../FilmScript/FilmScript'
 import { Controls } from '../Controls/Controls'
@@ -10,6 +11,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      error: null,
       planets: [],
       people: [],
       vehicles: [],
@@ -25,7 +27,7 @@ class App extends Component {
 
   generateFilmScript = async () => {
     try {
-      const data = await api.fetchData('https://swapi.co/api/films/');
+      const data = await fetchData('https://swapi.co/api/films/');
       const randomNumber = Math.floor(Math.random() * Math.floor(7));
       let featureFilmScript = data.results[randomNumber];
       this.setState({
@@ -36,37 +38,36 @@ class App extends Component {
         }
       })
     } catch (error) {
-      console.log(error);
+      this.setState({ error })
     }
-  }
+  };
 
   generateVehicles = async () => {
     try {
       const vehicles = await api.fetchVehicles();
       this.setState({ vehicles })
     } catch (error) {
-      console.log(error)
+      this.setState({ error })
     }
-  }
-
+  };
 
   generatePlanets = async () => {
     try {
       const planets = await api.fetchPlanets();
       this.setState({ planets })
     } catch (error) {
-      console.log(error);
+      this.setState({ error })
     }
-  }
+  };
 
   generatePeople = async () => {
     try {
       const people = await api.fetchPeople();
       this.setState({ people })
     } catch (error) {
-      console.log(error);
+      this.setState({ error })
     }
-  }
+  };
   
   retrieveCategory = (category) => {
     this.setState({ category })
