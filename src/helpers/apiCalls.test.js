@@ -19,8 +19,9 @@ describe('apiCalls', () => {
   });
 
   describe('fetchData', () => {
-    it('should call fetch with the correct params', () => {
+    it('should call fetch with correct params and number of times', () => {
       fetchData(mockUrl);
+      expect(window.fetch).toHaveBeenCalledTimes(1);
       expect(window.fetch).toHaveBeenCalledWith(mockUrl);
     });
 
@@ -37,7 +38,6 @@ describe('apiCalls', () => {
         ok: false,
       }));
       await expect(fetchData(mockUrl)).rejects.toEqual(expectedError)
-
     })
   });
 });
