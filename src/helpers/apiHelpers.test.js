@@ -1,39 +1,35 @@
-import { fetchData } from './apiCalls';
-import { fetchFilmScript, fetchPlanets, fetchPeople, fetchVehicles } from './apiHelpers';
+import * as api from './apiCalls';
+import * as helpers from './apiHelpers';
+import * as cleaners from './apiCleaners';
 
 describe('apiHelpers', () => {
   describe('fetchPlanets', () => {
-    let mockData;
+    let mockPlanets = [{
+      climate: "temperate",
+      name: "Alderaan",
+      population: "2000000000",
+      residents: ["Luke Skywalker"],
+      terrain: "grasslands, mountains",
+      type: "planet"
+    }];
 
     beforeEach(() => {
-      mockData = {
-        results: [{
-          climate: "temperate",
-          name: "Alderaan",
-          population: "2000000000",
-          residents: ["https://swapi.co/api/people/5/", "https://swapi.co/api/people/68/", "https://swapi.co/api/people/81/"],
-          terrain: "grasslands, mountains",
-        }]
-      };
-      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        json: () => Promise.resolve(mockData),
-        ok: true,
-      }));
-
-      helpers.fetchResidents = jest.fn(() => [{ "climate": "temperate", "name": "Alderaan", "population": "2000000000", "residents": ['Luke Skywalker'], "terrain": "grasslands, mountains", "type": "planet" }])
+      api.fetchData = jest.fn(() => true);
+      cleaners.fetchResidents = jest.fn(() => mockPlanets);
+    });
+    
+    it.only('should return planets if everything is ok', async () => {
+      const result = await helpers.fetchPlanets();
+      await expect(result).toEqual(mockPlanets);
     });
 
-    it('should return planets if everything is ok', async () => {
-      const mockUrl = `https://swapi.co/api/planets/`;
-      const result = await fetchPlanets();
-      const response = [{ "climate": "temperate", "name": "Alderaan", "population": "2000000000", "residents": ['Luke Skywalker'], "terrain": "grasslands, mountains", "type": "planet" }]
-      expect(window.fetch).toHaveBeenCalledWith(mockUrl);
-      expect(result).toEqual(response);
-    });
+    
   });
 
+
+
+
   describe('fetchFilmScript', () => {
-    let mockData;
 
     beforeEach(() => {
       mockData = {};
