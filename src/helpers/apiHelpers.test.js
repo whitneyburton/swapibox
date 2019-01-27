@@ -17,43 +17,47 @@ describe('apiHelpers', () => {
       api.fetchData = jest.fn(() => true);
       cleaners.fetchResidents = jest.fn(() => mockPlanets);
     });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
     
-    it.only('should return planets if everything is ok', async () => {
+    it('should return planets if everything is ok', async () => {
       const result = await helpers.fetchPlanets();
       await expect(result).toEqual(mockPlanets);
     });
-
-    
   });
 
+//   describe('fetchFilmScript', () => {
+//     let mockData; 
 
+//     beforeEach(() => {
+//       mockData = {};
+//       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+//         json: () => Promise.resolve(mockData),
+//         ok: true,
+//       }))
+//     });
 
+//     afterEach(() => {
+//       jest.clearAllMocks();
+//     });
 
-  describe('fetchFilmScript', () => {
+//     it('should return films if everything is ok', async () => {
+//       let mockUrl = 'https://swapi.co/api/films/';
+//       const result = await fetchFilmScript();
+//       expect(window.fetch).toHaveBeenCalledWith(mockUrl);
+//       expect(result).toEqual(mockData);
+//     })
 
-    beforeEach(() => {
-      mockData = {};
-      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        json: () => Promise.resolve(mockData),
-        ok: true,
-      }))
-    });
-
-    it('should return films if everything is ok', async () => {
-      let mockUrl = 'https://swapi.co/api/films/';
-      const result = await fetchFilmScript();
-      expect(window.fetch).toHaveBeenCalledWith(mockUrl);
-      expect(result).toEqual(mockData);
-    })
-
-    it('should throw an error if everything is not ok', async () => {
-      const expectedError = new Error('Error fetching films data.');
-      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        status: 401,
-        ok: false,
-      }));
-      await expect(fetchFilmScript()).rejects.toEqual(expectedError)
-    });
-  });
+//     it('should throw an error if everything is not ok', async () => {
+//       const expectedError = new Error('Error fetching films data.');
+//       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+//         status: 401,
+//         ok: false,
+//       }));
+//       await expect(fetchFilmScript()).rejects.toEqual(expectedError)
+//     });
+//   });
 
 });

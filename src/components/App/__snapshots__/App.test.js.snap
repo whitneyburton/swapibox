@@ -6,16 +6,11 @@ exports[`App should match the snapshot 1`] = `
 >
   <Header />
   <Controls
+    favorites={Array []}
     retrieveCategory={[Function]}
   />
   <FilmScript
     filmscript=""
-  />
-  <CardContainer
-    category=""
-    people={Array []}
-    planets={Array []}
-    vehicles={Array []}
   />
 </div>
 `;

@@ -2,14 +2,15 @@ import * as api from './apiCalls';
 import * as cleaners from './apiCleaners';
 
 describe('Cleaners', () => {
+  let mockUrls = ['mockUrl', 'mockUrl'];
+  let mockResident = { name: 'Bob' };
+
   describe('fetchResidents', () => {
     let mockPlanets;
     let mockUrl;
-    let mockResident;
 
     beforeEach(() => {
       mockUrl = 'https://swapi.co/api/films/';
-      mockResident = { name: 'Bob' }
       mockPlanets = [{
         climate: "temperate",
         name: "Alderaan",
@@ -18,6 +19,10 @@ describe('Cleaners', () => {
         terrain: "grasslands, mountains"
       }];
       api.fetchData = jest.fn(() => mockResident);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
     });
 
     it('should return an array of a planet', async () => {
@@ -34,14 +39,13 @@ describe('Cleaners', () => {
     })
   })
 
-  describe('fetchEachResident', () => {
-    let mockUrls;
-    let mockResident;
-    
+  describe('fetchEachResident', () => {    
     beforeEach(() => {
-      mockUrls = ['mockUrl', 'mockUrl'];
-      mockResident = { name: 'Bob' }
       api.fetchData = jest.fn(() => mockResident);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
     });
 
     it('should return an array of resident names', async () => {

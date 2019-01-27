@@ -13,6 +13,10 @@ describe('apiCalls', () => {
       ok: true,
     }));
   });
+  
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
   describe('fetchData', () => {
     it('should call fetch with the correct params', () => {
