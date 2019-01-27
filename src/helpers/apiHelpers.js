@@ -17,8 +17,8 @@ export const fetchPeople = async () => {
 };
 
 export const fetchVehicles = async () => {
-  const data = await fetchData(`https://swapi.co/api/vehicles/`);
+  const data = await fetchData('https://swapi.co/api/vehicles/');
   if (data) {
-    return await cleaners.distillVehicleProperties(data.results);
+    return await cleaners.cleanVehicles(data.results);
   }
 };

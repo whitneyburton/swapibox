@@ -104,13 +104,13 @@ describe('apiHelpers', () => {
         type: "vehicle"
       }];
       api.fetchData = jest.fn(() => mockData);
-      cleaners.distillVehicleProperties = jest.fn(() => mockVehicles);
+      cleaners.cleanVehicles = jest.fn(() => mockVehicles);
     });
 
     it('should return vehicles if everything is ok', async () => {
       let result = await helpers.fetchVehicles();
       expect(api.fetchData).toHaveBeenCalledTimes(1);
-      expect(cleaners.distillVehicleProperties).toHaveBeenCalledTimes(1);
+      expect(cleaners.cleanVehicles).toHaveBeenCalledTimes(1);
       expect(result).toEqual(mockVehicles);
     });
   });
