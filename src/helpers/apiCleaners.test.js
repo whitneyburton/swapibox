@@ -60,3 +60,27 @@ describe('Cleaners', () => {
     });
   });
 });
+
+
+// mockData = {
+//   results: [{
+//     homeworld: "Tatooine",
+//     name: "Luke Skywalker",
+//     population: "200000",
+//     species: ["https://swapi.co/api/species/1/"]
+//   }]
+// };
+// mockPeopleWithWorlds = [{
+//   homeworld: "Tatooine",
+//   name: "Luke Skywalker",
+//   population: "200000",
+//   species: ["https://swapi.co/api/species/1/"]
+// }];
+// mockPeopleWithWorldsAndSpecies = [{
+//   type: "person",
+//   language: "Galactic Basic",
+//   homeworld: "Tatooine",
+//   name: "Luke Skywalker",
+//   population: "200000",
+//   species: "Human"
+// }];

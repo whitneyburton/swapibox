@@ -11,8 +11,8 @@ export const fetchPlanets = async () => {
 export const fetchPeople = async () => {
   const data = await fetchData('https://swapi.co/api/people/');
   if (data) {
-    const peopleWithHomeworlds = await cleaners.fetchHomeworld(data.results);
-    return await cleaners.fetchSpecies(peopleWithHomeworlds);
+    const peopleWithWorlds = await cleaners.fetchHomeworld(data.results);
+    return await cleaners.fetchSpecies(peopleWithWorlds);
   }
 };
 
