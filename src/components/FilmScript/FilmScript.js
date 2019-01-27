@@ -1,5 +1,6 @@
 import React from 'react';
 import './FilmScript.scss';
+import PropTypes from 'prop-types';
 
 export const FilmScript = ({ filmscript }) => {
   return (
@@ -15,4 +16,8 @@ export const FilmScript = ({ filmscript }) => {
       </p>
     </div>
   )
-}
+};
+
+FilmScript.propTypes = {
+  filmscript: PropTypes.object.isRequired
+};

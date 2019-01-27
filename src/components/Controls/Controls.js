@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Controls.scss';
+import PropTypes from 'prop-types';
 
 export class Controls extends Component {
   constructor(props) {
@@ -7,17 +8,18 @@ export class Controls extends Component {
     this.state = {
       active: false,
     }
-  }
+  };
   
   passCategory = (e) => {
     let { retrieveCategory } = this.props;
     const category = e.target.name;
     retrieveCategory(category);
-  }
+  };
 
   render() {
-    const favorites = this.props.favorites.length;
-    const categories = ['people', 'planets', 'vehicles', `favorites (${favorites})`]
+    const { favorites } = this.props;
+    const numOfFavorites = favorites.length;
+    const categories = ['people', 'planets', 'vehicles', `favorites (${numOfFavorites})`]
     const buttons = categories.map(category => {
       return <button
         onClick={this.passCategory}
@@ -32,4 +34,9 @@ export class Controls extends Component {
       </div>
     )
   }
-}
+};
+
+Controls.propTypves = {
+  retrieveCategory: PropTypes.any.isRequired,
+  favorites: PropTypes.array.isRequired
+};

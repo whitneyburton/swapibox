@@ -1,5 +1,6 @@
 import React from 'react';
 import './Card.scss';
+import PropTypes from 'prop-types';
 
 export const Card = ({ card }) => {
   let cardType;
@@ -38,4 +39,8 @@ export const Card = ({ card }) => {
       {cardType}
     </div>
   )
+}
+
+Card.propTypes = {
+  card: PropTypes.object.isRequired
 }
