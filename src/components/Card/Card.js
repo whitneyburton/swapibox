@@ -2,7 +2,7 @@ import React from 'react';
 import './Card.scss';
 import PropTypes from 'prop-types';
 
-export const Card = ({ card }) => {
+export const Card = ({ card, handleFavorite }) => {
   let cardType;
   let cardTitle = card.name.toUpperCase();
 
@@ -13,7 +13,9 @@ export const Card = ({ card }) => {
         <div className='card-info'>
           <div className='card-title'>
             <h3>{cardTitle}</h3>
-            <i className='far fa-star'></i>
+            <i
+              onClick={() => handleFavorite(card.name)}
+              className='far fa-star'></i>
           </div>
           <p><span className='info'>Species:</span> {card.species}</p>
           <p><span className='info'>Language:</span> {card.language}</p>
@@ -67,5 +69,6 @@ export const Card = ({ card }) => {
 };
 
 Card.propTypes = {
-  card: PropTypes.object.isRequired
+  card: PropTypes.object.isRequired,
+  handleFavorite: PropTypes.func.isRequired
 }

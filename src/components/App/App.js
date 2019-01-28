@@ -68,6 +68,21 @@ class App extends Component {
       this.setState({ error })
     }
   };
+
+  handleFavorite = (cardName) => {
+    let { favorites } = this.state;
+    let newFavorites;
+    if (favorites.length === 0) {
+      newFavorites = [cardName];
+    } else if (favorites.includes(cardName)) {
+      newFavorites = favorites.filter(favorite => {
+        return favorite !== cardName;
+      });
+    } else {
+      newFavorites = [...favorites, cardName];
+    }
+    this.setState({ favorites: newFavorites })
+  }
   
   retrieveCategory = (category) => {
     this.setState({ category })
@@ -84,12 +99,14 @@ class App extends Component {
 
   render() {
     let { category, favorites, filmscript } = this.state;
+    let { retrieveCategory, handleFavorite } = this;
     let body;
     
     if (category) {
       body = <CardContainer
         category={category}
-        cards={this.state[category]} /> 
+        cards={this.state[category]}
+        handleFavorite={handleFavorite} /> 
     } else {
       body = <FilmScript
         filmscript={filmscript} />
@@ -100,7 +117,7 @@ class App extends Component {
         <Header />
         <Controls
           favorites={favorites}
-          retrieveCategory={this.retrieveCategory} />
+          retrieveCategory={retrieveCategory} />
         { body }
       </div>
     );
