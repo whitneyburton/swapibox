@@ -45,6 +45,7 @@ class App extends Component {
   generateVehicles = async () => {
     try {
       const vehicles = await helpers.fetchVehicles();
+      console.log(vehicles)
       this.setState({ vehicles })
     } catch (error) {
       this.setState({ error })

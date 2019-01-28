@@ -31,7 +31,7 @@ export const CardContainer = ({ cards, favoriteCards, handleFavorite, category }
   } else if (cards.length === 0 && category === 'favorites') {
     return (
       <div className='no-favorites-container'>
-        <h2>
+        <h2 className='no-faves-message'>
           There are no favorites yet.
           Choose a few by pressing the &nbsp;
           <i className='fas fa-star'></i>
@@ -42,7 +42,7 @@ export const CardContainer = ({ cards, favoriteCards, handleFavorite, category }
   } else {
     return (
       <div className='loading-notice'>
-        <h2>
+        <h2 className='loading-text'>
           LOADING...
         </h2>
       </div>
