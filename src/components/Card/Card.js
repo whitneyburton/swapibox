@@ -3,7 +3,6 @@ import './Card.scss';
 import PropTypes from 'prop-types';
 
 export const Card = ({ card, favorited, handleFavorite }) => {
-  console.log(favorited)
   let cardType;
   let cardTitle = card.name.toUpperCase();
 
@@ -41,7 +40,7 @@ export const Card = ({ card, favorited, handleFavorite }) => {
             <span className='info'>Residents:</span>
             <ul>
               {card.residents.map(resident => {
-                return <li>{resident}</li>
+                return <li key={resident}>{resident}</li>
               })}
             </ul>
           </div>
@@ -75,5 +74,6 @@ export const Card = ({ card, favorited, handleFavorite }) => {
 
 Card.propTypes = {
   card: PropTypes.object.isRequired,
+  favorited: PropTypes.bool.isRequired,
   handleFavorite: PropTypes.func.isRequired
 }

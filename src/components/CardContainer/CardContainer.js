@@ -20,7 +20,6 @@ export const CardContainer = ({ cards, favoriteCards, handleFavorite, category }
         favorited={favoritedCard}
         handleFavorite={handleFavorite} />
     );
-
   })
 
   if (cards.length > 0) {
@@ -53,5 +52,7 @@ export const CardContainer = ({ cards, favoriteCards, handleFavorite, category }
 
 CardContainer.propTypes = {
   cards: PropTypes.array.isRequired,
-  handleFavorites: PropTypes.func.isRequired
+  favoriteCards: PropTypes.array.isRequired,
+  handleFavorite: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired
 }

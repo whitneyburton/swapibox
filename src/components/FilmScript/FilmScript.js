@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 export const FilmScript = ({ filmscript }) => {
   return (
     <div className='FilmScript'>
-      <div class="fade"></div>
-      <section class="star-wars">
-        <div class="crawl">
-          <div class="title">
+      <div className="fade"></div>
+      <section className="star-wars">
+        <div className="crawl">
+          <div className="title">
               <h4>
                 {filmscript.title}
               </h4>

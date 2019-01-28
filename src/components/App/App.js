@@ -116,7 +116,7 @@ class App extends Component {
         cards={this.state[category]}
         favoriteCards={favorites}
         handleFavorite={handleFavorite} />
-    } else {
+    } else if (filmscript) {
       body = <FilmScript
         filmscript={filmscript} />
     }

@@ -22,6 +22,7 @@ export class Controls extends Component {
     const categories = ['people', 'planets', 'vehicles', `favorites (${numOfFavorites})`]
     const buttons = categories.map(category => {
       return <button
+        key={category}
         onClick={this.passCategory}
         type='submit'
         name={`${category}`}
