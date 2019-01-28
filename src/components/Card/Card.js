@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 export const Card = ({ card, handleFavorite }) => {
   let cardType;
   let cardTitle = card.name.toUpperCase();
-
+  
   switch (card.type) {
     case 'person':
       cardType =
@@ -14,7 +14,7 @@ export const Card = ({ card, handleFavorite }) => {
           <div className='card-title'>
             <h3>{cardTitle}</h3>
             <i
-              onClick={() => handleFavorite(card.name)}
+              onClick={() => handleFavorite(card)}
               className='far fa-star'></i>
           </div>
           <p><span className='info'>Species:</span> {card.species}</p>
@@ -30,7 +30,9 @@ export const Card = ({ card, handleFavorite }) => {
         <div className='card-info'>
           <div className='card-title'>
             <h3>{cardTitle}</h3>
-            <i className='far fa-star'></i>            
+            <i
+              onClick={() => handleFavorite(card)}
+              className='far fa-star'></i>          
           </div>
           <p><span className='info'>Terrain:</span> {card.terrain}</p>
           <p><span className='info'>Population:</span> {card.population}</p>
@@ -50,7 +52,9 @@ export const Card = ({ card, handleFavorite }) => {
         <div className='card-info'>
           <div className='card-title'>
             <h3>{cardTitle}</h3>
-            <i className='far fa-star'></i>
+            <i
+              onClick={() => handleFavorite(card)}
+              className='far fa-star'></i>
           </div>
           <p><span className='info'>Model:</span> {card.model}</p>
           <p><span className='info'>Vehicle Class:</span> {card.class}</p>

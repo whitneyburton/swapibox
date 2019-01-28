@@ -69,31 +69,39 @@ class App extends Component {
     }
   };
 
-  handleFavorite = (cardName) => {
+  handleFavorite = (card) => {
     let { favorites } = this.state;
     let newFavorites;
     if (favorites.length === 0) {
-      newFavorites = [cardName];
-    } else if (favorites.includes(cardName)) {
+      newFavorites = [card];
+    } else if (favorites.includes(card)) {
       newFavorites = favorites.filter(favorite => {
-        return favorite !== cardName;
+        return favorite !== card;
       });
     } else {
-      newFavorites = [...favorites, cardName];
+      newFavorites = [...favorites, card];
     }
     this.setState({ favorites: newFavorites })
   }
   
   retrieveCategory = (category) => {
-    this.setState({ category })
     if (category === 'people' && this.state.people.length === 0) {
+      this.setState({ category })
       this.generatePeople();
+    } else if (category === 'people') {
+      this.setState({ category })
     } else if (category === 'planets' && this.state.planets.length === 0) {
+      this.setState({ category })
       this.generatePlanets();
+    } else if (category === 'planets') {
+      this.setState({ category })
     } else if (category === 'vehicles' && this.state.vehicles.length === 0) {
+      this.setState({ category })
       this.generateVehicles();
-    } else if (category === 'favorites') {
-      return [];
+    } else if (category === 'vehicles') {
+      this.setState({ category })
+    } else  {
+      this.setState({ category: 'favorites' })
     } 
   }
 
