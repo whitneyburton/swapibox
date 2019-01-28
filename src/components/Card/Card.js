@@ -2,7 +2,8 @@ import React from 'react';
 import './Card.scss';
 import PropTypes from 'prop-types';
 
-export const Card = ({ card, handleFavorite }) => {
+export const Card = ({ card, favorited, handleFavorite }) => {
+  console.log(favorited)
   let cardType;
   let cardTitle = card.name.toUpperCase();
 
@@ -12,10 +13,10 @@ export const Card = ({ card, handleFavorite }) => {
         <div className='Person-card Card'>
           <div className='card-info'>
             <div className='card-title'>
-              <h3>{cardTitle}</h3>
+            <h3>{cardTitle}</h3>
               <i
                 onClick={() => handleFavorite(card)}
-                className='far fa-star'></i>
+                className={'fas fa-star ' + favorited}></i>
             </div>
             <p><span className='info'>Species:</span> {card.species}</p>
             <p><span className='info'>Language:</span> {card.language}</p>
@@ -32,7 +33,7 @@ export const Card = ({ card, handleFavorite }) => {
               <h3>{cardTitle}</h3>
               <i
                 onClick={() => handleFavorite(card)}
-                className='far fa-star'></i>
+                className={'fas fa-star ' + favorited}></i>
             </div>
             <p><span className='info'>Terrain:</span> {card.terrain}</p>
             <p><span className='info'>Population:</span> {card.population}</p>
@@ -54,7 +55,7 @@ export const Card = ({ card, handleFavorite }) => {
               <h3>{cardTitle}</h3>
               <i
                 onClick={() => handleFavorite(card)}
-                className='far fa-star'></i>
+                className={'fas fa-star ' + favorited}></i>
             </div>
             <p><span className='info'>Model:</span> {card.model}</p>
             <p><span className='info'>Vehicle Class:</span> {card.class}</p>

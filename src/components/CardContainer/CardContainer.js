@@ -3,14 +3,25 @@ import './CardContainer.scss';
 import { Card } from '../Card/Card';
 import PropTypes from 'prop-types';
 
-export const CardContainer = ({ cards, handleFavorite, category }) => {
+export const CardContainer = ({ cards, favoriteCards, handleFavorite, category }) => {
   const allCards = cards.map(card => {
-    return <Card
-      cards={cards}
-      key={card.name}
-      card={card}
-      handleFavorite={handleFavorite} />;
-  });
+    let favoritedCard;
+
+    if (favoriteCards.includes(card)) {
+      favoritedCard = true;
+    } else {
+      favoritedCard = false;
+    };
+
+    return (
+      <Card
+        key={card.name}
+        card={card}
+        favorited={favoritedCard}
+        handleFavorite={handleFavorite} />
+    );
+
+  })
 
   if (cards.length > 0) {
     return (
@@ -20,18 +31,18 @@ export const CardContainer = ({ cards, handleFavorite, category }) => {
     )
   } else if (cards.length === 0 && category === 'favorites') {
     return (
-      <div>
+      <div className='no-favorites-container'>
         <h2>
           There are no favorites yet.
           Choose a few by pressing the &nbsp;
-          <i className='far fa-star'></i> 
+          <i className='far fa-star'></i>
           &nbsp; button on a card!
         </h2>
       </div>
     )
   } else {
     return (
-      <div>
+      <div className='loading-notice'>
         <h2>
           Loading...
         </h2>

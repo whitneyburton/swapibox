@@ -85,19 +85,24 @@ class App extends Component {
   }
 
   retrieveCategory = (category) => {
-    category === 'people' && this.state.people.length === 0 ?
-      this.setState({ category }) && this.generatePeople()
-      : category === 'people' ?
-        this.setState({ category })
-        : category === 'planets' && this.state.planets.length === 0 ?
-          this.setState({ category }) && this.generatePlanets()
-          : category === 'planets' ?
-            this.setState({ category })
-            : category === 'vehicles' && this.state.vehicles.length === 0 ?
-              this.setState({ category }) && this.generateVehicles()
-              : category === 'vehicles' ?
-                this.setState({ category })
-                : this.setState({ category: 'favorites' })
+    if (category === 'people' && this.state.people.length === 0) {
+      this.setState({ category })
+      this.generatePeople();
+    } else if (category === 'people') {
+      this.setState({ category })
+    } else if (category === 'planets' && this.state.planets.length === 0) {
+      this.setState({ category })
+      this.generatePlanets();
+    } else if (category === 'planets') {
+      this.setState({ category })
+    } else if (category === 'vehicles' && this.state.vehicles.length === 0) {
+      this.setState({ category })
+      this.generateVehicles();
+    } else if (category === 'vehicles') {
+      this.setState({ category })
+    } else {
+      this.setState({ category: 'favorites' })
+    }
   };
 
   render() {
@@ -109,6 +114,7 @@ class App extends Component {
       body = <CardContainer
         category={category}
         cards={this.state[category]}
+        favoriteCards={favorites}
         handleFavorite={handleFavorite} />
     } else {
       body = <FilmScript

@@ -19,13 +19,21 @@
   align-items: center;
   border-bottom: 1px solid #ddd;
 
+  .true {
+    color: #ffff50;
+  }
+
+  .false {
+    color: whitesmoke;
+  }
+
   .fa-star {
     height: 40px;
     font-size: 20px;
-    color: #ffff50;
     padding-top: 5px;
     transition: all 500ms ease;
 
+    
     &:hover {
       font-size: 22px;
       cursor: pointer;
@@ -38,6 +46,9 @@
     letter-spacing: 2px;
     height: 7vh;
   }
+}
+
+.true {
 }
 
 .info,
