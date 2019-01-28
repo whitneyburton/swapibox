@@ -83,38 +83,33 @@ class App extends Component {
     }
     this.setState({ favorites: newFavorites })
   }
-  
+
   retrieveCategory = (category) => {
-    if (category === 'people' && this.state.people.length === 0) {
-      this.setState({ category })
-      this.generatePeople();
-    } else if (category === 'people') {
-      this.setState({ category })
-    } else if (category === 'planets' && this.state.planets.length === 0) {
-      this.setState({ category })
-      this.generatePlanets();
-    } else if (category === 'planets') {
-      this.setState({ category })
-    } else if (category === 'vehicles' && this.state.vehicles.length === 0) {
-      this.setState({ category })
-      this.generateVehicles();
-    } else if (category === 'vehicles') {
-      this.setState({ category })
-    } else {
-      this.setState({ category: 'favorites' })
-    }
+    category === 'people' && this.state.people.length === 0 ?
+      this.setState({ category }) && this.generatePeople()
+      : category === 'people' ?
+        this.setState({ category })
+        : category === 'planets' && this.state.planets.length === 0 ?
+          this.setState({ category }) && this.generatePlanets()
+          : category === 'planets' ?
+            this.setState({ category })
+            : category === 'vehicles' && this.state.vehicles.length === 0 ?
+              this.setState({ category }) && this.generateVehicles()
+              : category === 'vehicles' ?
+                this.setState({ category })
+                : this.setState({ category: 'favorites' })
   };
 
   render() {
     let { category, favorites, filmscript } = this.state;
     let { retrieveCategory, handleFavorite } = this;
     let body;
-    
+
     if (category) {
       body = <CardContainer
         category={category}
         cards={this.state[category]}
-        handleFavorite={handleFavorite} /> 
+        handleFavorite={handleFavorite} />
     } else {
       body = <FilmScript
         filmscript={filmscript} />
@@ -126,7 +121,7 @@ class App extends Component {
         <Controls
           favorites={favorites}
           retrieveCategory={retrieveCategory} />
-        { body }
+        {body}
       </div>
     );
   }
