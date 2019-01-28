@@ -100,10 +100,10 @@ class App extends Component {
       this.generateVehicles();
     } else if (category === 'vehicles') {
       this.setState({ category })
-    } else  {
+    } else {
       this.setState({ category: 'favorites' })
-    } 
-  }
+    }
+  };
 
   render() {
     let { category, favorites, filmscript } = this.state;

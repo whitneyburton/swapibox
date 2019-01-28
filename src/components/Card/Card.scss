@@ -6,7 +6,7 @@
   margin: auto;
   height: 270px;
   margin-top: 20px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .card-info {
@@ -47,6 +47,23 @@ p {
   color: #ddd
 }
 
+li {
+  list-style-type: square;
+}
+
+h2 {
+  margin: 150px auto;
+  width: 70%;
+  color: whitesmoke;
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 1px;
+
+  .fa-star {
+    color: #ffff50;
+  }
+}
+
 .info {
   font-weight: bold;
 
@@ -64,7 +81,6 @@ p {
 
 .Planet-card {
   h3 {
-    height: 3vh;
     color: #25ac25;
   }
 
