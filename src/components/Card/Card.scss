@@ -1,21 +1,52 @@
 .Card {
-  background-color: #ffffffbf;
+  background-color: #282727e8;
   width: 90%;
-  margin: auto;
   padding: 5px;
   border-radius: 5px;
+  margin: auto;
   height: 250px;
   margin-top: 20px;
 }
 
-.Person-card {
+.card-title {
+}
 
+h3 {
+  font-size: 26px;
+  text-align: center;
+  margin: 10px;
+}
+
+p {
+color: #ddd
+}
+
+.info {
+  font-weight: bold;
+
+}
+
+.Person-card {
+  h3 {
+    color: #ffff50;
+  }
+  
 }
 
 .Planet-card {
   
+  h3 {
+    color: #25ac25;
+  }
 }
 
 .Vehicle-card {
   
+  h3 {
+    color: #3535ff;
+  }
+
+  .info {
+    color: #9f9fff
+  }
 }

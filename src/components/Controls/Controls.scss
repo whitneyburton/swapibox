@@ -1,18 +1,19 @@
 .Controls {
   background-color: transparent;
-  height: 100%;
-  grid-area: controls;
+  height: 2vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-top: 10px;
+  padding-bottom: 28px;
 }
 
 .people,
 .planets,
 .vehicles {
+  font-weight: bold;
+  letter-spacing: 1.5px;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 12px 24px;
   background-color: #0013ff69;
   border: none;
   color: #fff;
@@ -23,8 +24,10 @@
 }
 
 .favorites {
+  font-weight: bold;
+  letter-spacing: 1.5px;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 12px 24px;
   background-color: #ffd811c4;
   font-size: 14px;
   border: none;
