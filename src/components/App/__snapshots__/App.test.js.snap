@@ -9,8 +9,5 @@ exports[`App should match the snapshot 1`] = `
     favorites={Array []}
     retrieveCategory={[Function]}
   />
-  <FilmScript
-    filmscript=""
-  />
 </div>
 `;

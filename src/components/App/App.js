@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../main.scss';
 import { fetchData } from '../../helpers/apiCalls';
-import * as api from '../../helpers/apiHelpers';
+import * as helpers from '../../helpers/apiHelpers';
 import { Header } from '../Header/Header'
 import { FilmScript } from '../FilmScript/FilmScript'
 import { Controls } from '../Controls/Controls'
@@ -44,7 +44,7 @@ class App extends Component {
 
   generateVehicles = async () => {
     try {
-      const vehicles = await api.fetchVehicles();
+      const vehicles = await helpers.fetchVehicles();
       this.setState({ vehicles })
     } catch (error) {
       this.setState({ error })
@@ -53,7 +53,7 @@ class App extends Component {
 
   generatePlanets = async () => {
     try {
-      const planets = await api.fetchPlanets();
+      const planets = await helpers.fetchPlanets();
       this.setState({ planets })
     } catch (error) {
       this.setState({ error })
@@ -62,7 +62,7 @@ class App extends Component {
 
   generatePeople = async () => {
     try {
-      const people = await api.fetchPeople();
+      const people = await helpers.fetchPeople();
       this.setState({ people })
     } catch (error) {
       this.setState({ error })
