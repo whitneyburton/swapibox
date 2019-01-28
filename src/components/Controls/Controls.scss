@@ -14,12 +14,14 @@
   letter-spacing: 1.5px;
   border-radius: 5px;
   padding: 12px 24px;
-  background-color: #0013ff69;
+  background-color: #000fcdb8;
   border: none;
   color: #fff;
+  transition: background-color 0.3s ease;
 
   &:hover {
     cursor: pointer;
+    background-color: #1d3065e0;
   }
 }
 
@@ -28,12 +30,14 @@
   letter-spacing: 1.5px;
   border-radius: 5px;
   padding: 12px 24px;
-  background-color: #ffd811c4;
+  background-color: #000fcdb8;
   font-size: 14px;
   border: none;
   color: #fff;
+  transition: background-color 0.3s ease;
 
   &:hover {
     cursor: pointer;
+    background-color: #1d3065e0;
   }
 }

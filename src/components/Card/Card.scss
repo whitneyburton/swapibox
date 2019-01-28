@@ -4,20 +4,30 @@
   padding: 5px;
   border-radius: 5px;
   margin: auto;
-  height: 250px;
+  height: 270px;
   margin-top: 20px;
+  overflow: scroll;
 }
+
+.card-info {
+  padding: 8px 25px;
+}
+
 
 .card-title {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+
+  h3 {
+    font-size: 26px;
+    margin: 4px 0px;
+    letter-spacing: 2px;
+    height: 7vh;
+  }
 }
 
-h3 {
-  font-size: 26px;
-  text-align: center;
-  margin: 10px;
-}
-
-p {
+.info, ul, li, p {
 color: #ddd
 }
 
@@ -31,12 +41,19 @@ color: #ddd
     color: #ffff50;
   }
   
+  .info {
+    color: #ffffb9;
+  }
 }
 
 .Planet-card {
-  
   h3 {
+    height: 3vh;
     color: #25ac25;
+  }
+
+  .info {
+    color: #c1f7c1;
   }
 }
 
@@ -47,6 +64,6 @@ color: #ddd
   }
 
   .info {
-    color: #9f9fff
+    color: #bbcbfd;
   }
 }
