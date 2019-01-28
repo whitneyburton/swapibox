@@ -35,7 +35,7 @@ export const CardContainer = ({ cards, favoriteCards, handleFavorite, category }
         <h2>
           There are no favorites yet.
           Choose a few by pressing the &nbsp;
-          <i className='far fa-star'></i>
+          <i className='fas fa-star'></i>
           &nbsp; button on a card!
         </h2>
       </div>
