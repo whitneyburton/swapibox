@@ -13,6 +13,7 @@ export const Card = ({ card }) => {
         <div className='card-info'>
           <div className='card-title'>
             <h3>{cardTitle}</h3>
+            <i className='far fa-star'></i>
           </div>
           <p><span className='info'>Species:</span> {card.species}</p>
           <p><span className='info'>Language:</span> {card.language}</p>
@@ -27,6 +28,7 @@ export const Card = ({ card }) => {
         <div className='card-info'>
           <div className='card-title'>
             <h3>{cardTitle}</h3>
+            <i className='far fa-star'></i>            
           </div>
           <p><span className='info'>Terrain:</span> {card.terrain}</p>
           <p><span className='info'>Population:</span> {card.population}</p>
@@ -46,6 +48,7 @@ export const Card = ({ card }) => {
         <div className='card-info'>
           <div className='card-title'>
             <h3>{cardTitle}</h3>
+            <i className='far fa-star'></i>
           </div>
           <p><span className='info'>Model:</span> {card.model}</p>
           <p><span className='info'>Vehicle Class:</span> {card.class}</p>

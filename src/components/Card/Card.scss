@@ -13,22 +13,38 @@
   padding: 8px 25px;
 }
 
-
 .card-title {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ddd;
 
+  .fa-star {
+    height: 40px;
+    font-size: 20px;
+    color: #ffff50;
+    padding-top: 5px;
+    transition: all 500ms ease;
+
+    &:hover {
+      font-size: 22px;
+      cursor: pointer;
+    }
+  }
+
   h3 {
-    font-size: 26px;
+    font-size: 24px;
     margin: 4px 0px;
     letter-spacing: 2px;
     height: 7vh;
   }
 }
 
-.info, ul, li, p {
-color: #ddd
+.info,
+ul,
+li,
+p {
+  color: #ddd
 }
 
 .info {
@@ -40,7 +56,7 @@ color: #ddd
   h3 {
     color: #ffff50;
   }
-  
+
   .info {
     color: #ffffb9;
   }
@@ -58,7 +74,7 @@ color: #ddd
 }
 
 .Vehicle-card {
-  
+
   h3 {
     color: #3535ff;
   }
