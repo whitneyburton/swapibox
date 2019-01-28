@@ -13,7 +13,7 @@ export const FilmScript = ({ filmscript }) => {
                 {filmscript.title}
               </h4>
           </div>
-          <p>
+          <p className='opening-text'>
             {filmscript.opening_crawl}
           </p>
           <h5>
