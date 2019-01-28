@@ -37,6 +37,6 @@ export class Controls extends Component {
 };
 
 Controls.propTypves = {
-  retrieveCategory: PropTypes.any.isRequired,
+  retrieveCategory: PropTypes.func.isRequired,
   favorites: PropTypes.array.isRequired
 };

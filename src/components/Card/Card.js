@@ -6,7 +6,7 @@ export const Card = ({ card }) => {
   let cardType;
   switch (card.type) {
     case 'person':
-      cardType = <div className='Card'>
+      cardType = <div className='Person-card Card'>
         <h3>{card.name}</h3>
         <p>Species: {card.species}</p>
         <p>Language: {card.language}</p>
@@ -15,7 +15,7 @@ export const Card = ({ card }) => {
       </div>
       break;
     case 'planet':
-      cardType = <div className='Card'>
+      cardType = <div className='Planet-card Card'>
         <h3>{card.name}</h3>
         <p>Terrain: {card.terrain}</p>
         <p>Population: {card.population}</p>
@@ -24,7 +24,7 @@ export const Card = ({ card }) => {
       </div>
       break;
     case 'vehicle':
-      cardType = <div className='Card'>
+      cardType = <div className='Vehicle-card Card'>
         <h3>{card.name}</h3>
         <p>Model: {card.model}</p>
         <p>Vehicle Class: {card.class}</p>

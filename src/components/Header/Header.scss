@@ -1,9 +1,13 @@
+@font-face {
+  font-family: 'Star Jedi';
+  // src: url(./fonts/Starjhol.ttf);
+}
+
 .Header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000;
-  height: 12vh;
+  height: 16vh;
   color: yellow;
 }
 
