@@ -1,11 +1,10 @@
 .CardContainer {
-  grid-area: cardcontainer;
-  padding: 0px 10px;
-  height: 79vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: max-content;
   overflow: scroll;
+  padding: 0px 10px;
+  height: 79vh;
 }
 
 .no-favorites-container,
