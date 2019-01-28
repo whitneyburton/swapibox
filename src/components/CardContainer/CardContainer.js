@@ -43,7 +43,7 @@ export const CardContainer = ({ cards, favoriteCards, handleFavorite, category }
     return (
       <div className='loading-notice'>
         <h2>
-          Loading...
+          LOADING...
         </h2>
       </div>
     )

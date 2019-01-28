@@ -8,3 +8,12 @@ body {
 .App {
   font-family: Arial, Geneva, Tahoma, sans-serif;
 }
+
+.loading-notice {
+  margin: auto;
+  width: 35%;
+  height: 450px;
+  background-image: url('./images/bb8.png');
+  background-repeat: no-repeat;
+  background-size: 450px;
+}
