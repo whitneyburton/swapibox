@@ -6,6 +6,7 @@ SWAPI-Box is a project that uses the Star Wars API to show users a variety of da
 ### Setup
 
 In your terminal:
+
 `git clone https://github.com/whitneyburton/swapibox.git`
 
 `cd swapibox`
